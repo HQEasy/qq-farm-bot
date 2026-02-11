@@ -5,7 +5,7 @@
 
 const { types } = require('./proto');
 const { sendMsgAsync } = require('./network');
-const { toLong, toNum, log, logWarn } = require('./utils');
+const { toLong, toNum, log, logWarn, emitRuntimeHint } = require('./utils');
 const { getFruitName } = require('./gameConfig');
 const seedShopData = require('../tools/seed-shop-merged-export.json');
 
@@ -99,6 +99,7 @@ async function sellAllFruits() {
         const reply = await sellItems(toSell);
         const totalGold = extractGold(reply);
         log('仓库', `出售 ${names.join(', ')}，获得 ${totalGold} 金币`);
+        emitRuntimeHint(false);
     } catch (e) {
         logWarn('仓库', `出售失败: ${e.message}`);
     }
@@ -138,6 +139,7 @@ async function debugSellFruits() {
         const reply = await sellItems(toSell);
         const totalGold = extractGold(reply);
         log('仓库', `出售完成，共获得 ${totalGold} 金币`);
+        emitRuntimeHint(false);
     } catch (e) {
         logWarn('仓库', `调试出售失败: ${e.message}`);
         console.error(e);

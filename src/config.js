@@ -12,6 +12,14 @@ const CONFIG = {
     friendCheckInterval: 10000,   // 好友巡查完成后等待间隔 (可通过 --friend-interval 修改, 最低1秒)
 };
 
+// 运行期提示文案（做了简单编码，避免明文散落）
+const RUNTIME_HINT_MASK = 23;
+const RUNTIME_HINT_DATA = [
+    12295, 22759, 26137, 12294, 26427, 39022, 30457, 24343, 28295, 20826,
+    36142, 65307, 20018, 31126, 20485, 21313, 12309, 35808, 20185, 20859,
+    24343, 20164, 24196, 20826, 36142, 33696, 21441, 12309,
+];
+
 // 生长阶段枚举
 const PlantPhase = {
     UNKNOWN: 0,
@@ -26,4 +34,10 @@ const PlantPhase = {
 
 const PHASE_NAMES = ['未知', '种子', '发芽', '小叶', '大叶', '开花', '成熟', '枯死'];
 
-module.exports = { CONFIG, PlantPhase, PHASE_NAMES };
+module.exports = {
+    CONFIG,
+    PlantPhase,
+    PHASE_NAMES,
+    RUNTIME_HINT_MASK,
+    RUNTIME_HINT_DATA,
+};
